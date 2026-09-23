@@ -1,7 +1,22 @@
 # 商城后台批量自动化经验（保未宝 mall.baovbao.com）
 
-> 实战环境：Windows + Python 3.13 + 一台 token=7C16719B86（持久可用）。
+> 实战环境：Windows + Python 3.13 + 一台 token=<TOKEN>（持久可用）。
 > 涉及 9 大类 / 104 二级 / 452 品牌 / 1534 商品的全量重塑。
+
+## 📚 文档
+
+| 文档 | 内容 |
+|---|---|
+| **[docs/API.md](./docs/API.md)** | **API 完整文档**：鉴权、错误码、登录、分类/商品/订单/用户等核心接口详解、图片 URL 规范、通用 Python 客户端 |
+| **[docs/API_CATALOG.md](./docs/API_CATALOG.md)** | **接口清单**：从前端 JS 提取的 **448 个 API 路径**（73 个模块），含实测探测状态标记 |
+| [README.md](./README.md) | 本文件：批量操作经验（review 流程、排序设计、误匹配规避等 11 节） |
+
+### API 速览
+
+- **总数**：448 个接口 / 73 个模块（Advert、good、goodsCate、order、user、index、setting、statistics…）
+- **全部 POST** + `Content-Type: application/json`
+- **鉴权走 Header**：`uid` / `sid` / `token`
+- **实测通过**：141 个（空参数即可）· 60 个需参数 · 237 个写操作未探测（避免副作用）
 
 ## 0. 心法：review 流程
 
@@ -23,7 +38,7 @@
 ```
 uid: 3
 sid: 303
-token: 7C16719B86     ← 从项目里 mimo/auth.json 抄，9/21 写的 9/23 仍有效
+token: <TOKEN>     ← 从项目里 mimo/auth.json 抄，9/21 写的 9/23 仍有效
 Content-Type: application/json;charset=UTF-8
 Origin: https://mall.baovbao.com
 Referer: https://mall.baovbao.com/admin/index.html
